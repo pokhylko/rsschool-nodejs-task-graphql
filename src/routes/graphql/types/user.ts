@@ -1,11 +1,17 @@
-import { GraphQLFloat, GraphQLList, GraphQLObjectType, GraphQLString } from "graphql";
-import { UUIDType } from "./uuid.js";
-import { profileType } from "./profile.js";
-import { postType } from "./post.js";
-import { PrismaType } from "./prisma.js";
+import {
+  GraphQLFloat,
+  GraphQLInputObjectType,
+  GraphQLList,
+  GraphQLObjectType,
+  GraphQLString,
+} from 'graphql';
+import { UUIDType } from './uuid.js';
+import { profileType } from './profile.js';
+import { postType } from './post.js';
+import { PrismaType } from './prisma.js';
 
 export const userType = new GraphQLObjectType({
-  name: "User",
+  name: 'User',
   fields: () => ({
     id: { type: UUIDType! },
     name: { type: GraphQLString! },
@@ -58,5 +64,21 @@ export const userType = new GraphQLObjectType({
         });
       },
     },
+  }),
+});
+
+export const CreateUserInputType = new GraphQLInputObjectType({
+  name: 'CreateUserInput',
+  fields: () => ({
+    name: { type: GraphQLString! },
+    balance: { type: GraphQLFloat! },
+  }),
+});
+
+export const ChangeUserInputType = new GraphQLInputObjectType({
+  name: 'ChangeUserInput',
+  fields: () => ({
+    name: { type: GraphQLString },
+    balance: { type: GraphQLFloat },
   }),
 });
